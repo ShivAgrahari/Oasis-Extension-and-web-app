@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Malicious URL Checker Extension",
+  "version": "1.0",
+  "description": "Check if a URL is malicious using a Flask API",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "favicon1.png"
+    
+  },
+  "permissions": ["activeTab"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

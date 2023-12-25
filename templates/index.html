@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+  <title>Malicious URL Checker</title>
+ 
+</head>
+<body>
+  <h1>Malicious URL Checker</h1>
+
+  <form id="form" method="post">
+
+  <label for="urlInput">Enter URL:</label>
+  <input type="text" id="url"/>
+
+  <input type="submit" id="checkButton"></button>
+</form>
+
+  <p id="result">The result will be shown here</p>
+
+<!-- 
+ <script>
+
+ fetch('http://127.0.0.1:8000/check/https://www.google.com')
+ .then(res=>{
+    return res.json()
+ })
+ .then(data=>{
+    console.log(data)
+ })
+ .catch(error=>console.log)
+ </script>  -->
+ 
+
+ 
+
+</body>
+
+<!-- <script src="/static/script.js"></script> -->
+
+<script>
+
+var form =document.getElementById('form')
+
+form.addEventListener('submit',function(e){
+
+    e.preventDefault()
+
+    var my_url = document.getElementById('url').value
+    var jsonData = {url: my_url};
+    console.log(jsonData)
+
+
+    fetch("http://127.0.0.1:9000/check",{
+        method: 'POST',
+        body: JSON.stringify(jsonData),
+        headers: 
+        {
+            "Content-Type":'application/x-www-form-urlencoded',
+        },
+    }).then(function(response){
+        return response.json()
+    })
+    .then(function(data){
+        console.log(data)
+       var result= document.getElementById('result')
+        result.innerHTML= '<p> The site is '+ data.result + ' with confidence '+ data.prob +'%<p>'
+        
+    })
+})
+  
+
+
+
+</script>
+
+
+
+</html>
+
